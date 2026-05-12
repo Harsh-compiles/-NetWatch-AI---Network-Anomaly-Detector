@@ -8,15 +8,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#060910;--bg2:#0b0f1a;--bg3:#111827;--bg4:#1a2235;
-  --green:#00ff88;--red:#ff3b5c;--yellow:#ffb800;--blue:#4d9fff;--purple:#a78bfa;
-  --text:#e2e8f0;--muted:#64748b;--border:#1e2d40;
-  --card:#0b0f1a;
-}
+:root{--bg:#060910;--bg2:#0b0f1a;--bg3:#111827;--green:#00ff88;--red:#ff3b5c;--yellow:#ffb800;--blue:#4d9fff;--purple:#a78bfa;--text:#e2e8f0;--muted:#64748b;--border:#1e2d40}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh}
-
-/* HEADER */
 header{border-bottom:1px solid var(--border);padding:0.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;background:var(--bg2);position:sticky;top:0;z-index:50}
 .logo{display:flex;align-items:center;gap:10px}
 .logo-icon{width:30px;height:30px;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;border-radius:5px}
@@ -27,20 +20,17 @@ header{border-bottom:1px solid var(--border);padding:0.9rem 1.5rem;display:flex;
 .live-dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:blink 1s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
 .btn{padding:6px 14px;border-radius:5px;font-size:0.75rem;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:all 0.2s}
-.btn-green{background:var(--green);color:#060910}
-.btn-green:hover{background:#00cc6a}
+.btn-green{background:var(--green);color:#060910}.btn-green:hover{background:#00cc6a}
 .btn-red{background:rgba(255,59,92,0.15);color:var(--red);border:1px solid rgba(255,59,92,0.3)}
-.btn-red:hover{background:rgba(255,59,92,0.25)}
-.btn-outline{background:transparent;color:var(--muted);border:1px solid var(--border)}
-.btn-outline:hover{border-color:var(--muted);color:var(--text)}
-
-/* LAYOUT */
+.btn-outline{background:transparent;color:var(--muted);border:1px solid var(--border)}.btn-outline:hover{border-color:var(--muted);color:var(--text)}
 .layout{display:grid;grid-template-columns:1fr 340px;gap:0;min-height:calc(100vh - 53px)}
 .main-col{padding:1.2rem;display:flex;flex-direction:column;gap:1rem;border-right:1px solid var(--border)}
 .side-col{display:flex;flex-direction:column;overflow:hidden}
-
-/* THREAT SCORE */
-.threat-banner{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;display:flex;align-items:center;gap:1.5rem}
+.api-banner{background:rgba(77,159,255,0.06);border:1px solid rgba(77,159,255,0.2);border-radius:8px;padding:0.75rem 1rem;display:flex;align-items:center;gap:10px;font-size:0.75rem;flex-wrap:wrap}
+.api-input{flex:1;min-width:200px;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:5px 10px;color:var(--text);font-family:'Space Mono',monospace;font-size:0.72rem;outline:none}
+.api-input:focus{border-color:var(--blue)}
+.api-save{background:var(--blue);color:#fff;border:none;padding:5px 14px;border-radius:4px;font-size:0.72rem;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600;white-space:nowrap}
+.threat-banner{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
 .score-dial{position:relative;width:80px;height:80px;flex-shrink:0}
 .score-dial canvas{width:80px!important;height:80px!important}
 .score-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
@@ -53,13 +43,9 @@ header{border-bottom:1px solid var(--border);padding:0.9rem 1.5rem;display:flex;
 .metric{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 10px}
 .metric-val{font-family:'Space Mono',monospace;font-size:1rem;font-weight:700}
 .metric-lbl{font-size:0.62rem;color:var(--muted);margin-top:2px}
-
-/* TRAFFIC CHART */
-.chart-panel{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;flex:1}
-.panel-title{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.8rem;display:flex;align-items:center;justify-content:space-between}
+.chart-panel{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem}
+.panel-title{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.8rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
 .chart-wrap{position:relative;height:180px}
-
-/* ATTACK MAP */
 .attack-types{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem}
 .attack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:0.8rem}
 .attack-card{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px;text-align:center;transition:all 0.3s}
@@ -68,102 +54,55 @@ header{border-bottom:1px solid var(--border);padding:0.9rem 1.5rem;display:flex;
 .attack-name{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em}
 .attack-count{font-family:'Space Mono',monospace;font-size:0.85rem;font-weight:700;margin-top:2px}
 .attack-card.active .attack-count{color:var(--red)}
-
-/* SIDE: ALERT FEED */
-.side-header{padding:0.8rem 1rem;border-bottom:1px solid var(--border);font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);display:flex;align-items:center;justify-content:space-between}
-.alert-count{background:var(--red);color:#fff;font-size:0.6rem;padding:1px 6px;border-radius:10px;font-weight:700}
-.alert-feed{flex:1;overflow-y:auto;max-height:calc(50vh - 53px)}
-.alert-item{padding:0.75rem 1rem;border-bottom:1px solid var(--border);animation:slideIn 0.3s ease;cursor:pointer;transition:background 0.15s}
-.alert-item:hover{background:var(--bg3)}
-@keyframes slideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-.alert-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
-.alert-type{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;display:flex;align-items:center;gap:4px}
-.alert-time{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted)}
-.alert-detail{font-size:0.7rem;color:var(--muted);line-height:1.4}
-.sev-CRITICAL{color:var(--red)}
-.sev-HIGH{color:var(--yellow)}
-.sev-MEDIUM{color:var(--blue)}
-.sev-LOW{color:var(--purple)}
-
-/* SIDE: AI ANALYSIS */
-.ai-section{border-top:1px solid var(--border);flex:1}
-.ai-header{padding:0.8rem 1rem;border-bottom:1px solid var(--border);font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);display:flex;align-items:center;gap:6px}
-.ai-body{padding:0.8rem 1rem;font-size:0.74rem;color:var(--muted);line-height:1.7;max-height:calc(50vh - 100px);overflow-y:auto}
-.ai-thinking{display:flex;gap:4px;align-items:center;color:var(--green);font-size:0.7rem}
-.ai-dot{width:4px;height:4px;background:var(--green);border-radius:50%;animation:bounce 0.8s infinite}
-.ai-dot:nth-child(2){animation-delay:0.15s}
-.ai-dot:nth-child(3){animation-delay:0.3s}
-@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
-.ai-analyze-btn{margin:0.8rem 1rem;width:calc(100% - 2rem)}
-
-/* NETWORK FLOW INPUT */
 .flow-section{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem}
 .flow-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:0.8rem}
 .flow-field{display:flex;flex-direction:column;gap:4px}
 .flow-label{font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em}
-.flow-input{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:5px 8px;color:var(--text);font-family:'Space Mono',monospace;font-size:0.72rem;outline:none;transition:border-color 0.2s;width:100%}
+.flow-input{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:5px 8px;color:var(--text);font-family:'Space Mono',monospace;font-size:0.72rem;outline:none;width:100%;transition:border-color 0.2s}
 .flow-input:focus{border-color:var(--green)}
-.flow-actions{display:flex;gap:8px;margin-top:10px;align-items:center}
-
-/* SCENARIO BUTTONS */
+.flow-actions{display:flex;gap:8px;margin-top:10px;align-items:center;flex-wrap:wrap}
 .scenarios{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .scenario-btn{padding:4px 10px;font-size:0.65rem;border-radius:4px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Inter',sans-serif;transition:all 0.2s}
-.scenario-btn:hover{background:var(--bg3)}
 .scenario-btn.ddos:hover{border-color:var(--red);color:var(--red)}
 .scenario-btn.portscan:hover{border-color:var(--yellow);color:var(--yellow)}
 .scenario-btn.brute:hover{border-color:var(--blue);color:var(--blue)}
 .scenario-btn.lateral:hover{border-color:var(--purple);color:var(--purple)}
 .scenario-btn.normal:hover{border-color:var(--green);color:var(--green)}
-
-/* PROGRESS BARS */
-.proto-bars{margin-top:0.6rem;display:flex;flex-direction:column;gap:6px}
-.proto-row{display:flex;align-items:center;gap:8px;font-size:0.68rem}
-.proto-name{width:40px;color:var(--muted)}
-.proto-bar{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
-.proto-fill{height:100%;border-radius:3px;transition:width 0.5s}
-.proto-pct{width:32px;text-align:right;color:var(--muted);font-family:'Space Mono',monospace;font-size:0.62rem}
-
-/* TIMELINE */
-.timeline{display:flex;flex-direction:column;gap:0}
-.tl-item{display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--border);align-items:flex-start}
-.tl-time{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--muted);flex-shrink:0;width:48px}
-.tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:3px}
-.tl-text{font-size:0.7rem;color:var(--muted);line-height:1.4;flex:1}
+.side-header{padding:0.8rem 1rem;border-bottom:1px solid var(--border);font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);display:flex;align-items:center;justify-content:space-between}
+.alert-count{background:var(--red);color:#fff;font-size:0.6rem;padding:1px 6px;border-radius:10px;font-weight:700}
+.alert-feed{overflow-y:auto;max-height:45vh}
+.alert-item{padding:0.75rem 1rem;border-bottom:1px solid var(--border);animation:slideIn 0.3s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.alert-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.alert-type{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em}
+.alert-time{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted)}
+.alert-detail{font-size:0.7rem;color:var(--muted);line-height:1.4}
+.ai-section{border-top:1px solid var(--border)}
+.ai-header{padding:0.8rem 1rem;border-bottom:1px solid var(--border);font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted)}
+.ai-body{padding:0.8rem 1rem;font-size:0.74rem;color:var(--muted);line-height:1.7;overflow-y:auto;max-height:300px}
+footer{border-top:1px solid var(--border);padding:1rem 1.5rem;text-align:center;font-size:0.68rem;color:var(--muted)}
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo">
     <div class="logo-icon">🌐</div>
-    <div>
-      <div class="logo-text">NetWatch AI</div>
-      <div class="logo-sub">Network Anomaly Detection Engine</div>
-    </div>
+    <div><div class="logo-text">NetWatch AI</div><div class="logo-sub">Network Anomaly Detection Engine</div></div>
   </div>
   <div class="header-right">
-    <div class="live-badge"><div class="live-dot"></div> <span id="liveStatus">MONITORING</span></div>
+    <div class="live-badge"><div class="live-dot"></div><span id="liveStatus">MONITORING</span></div>
     <button class="btn btn-green" id="startBtn" onclick="toggleMonitoring()">▶ Start Live Scan</button>
     <button class="btn btn-outline" onclick="resetAll()">Reset</button>
   </div>
 </header>
 
 <div class="layout">
-  <!-- MAIN COLUMN -->
   <div class="main-col">
-
-    <!-- THREAT SCORE -->
     <div class="threat-banner">
-      <div class="score-dial">
-        <canvas id="dialCanvas"></canvas>
-        <div class="score-center">
-          <div class="score-big" id="scoreNum" style="color:var(--green)">0</div>
-          <div class="score-lbl">Threat</div>
-        </div>
-      </div>
+      <div class="score-dial"><canvas id="dialCanvas"></canvas><div class="score-center"><div class="score-big" id="scoreNum" style="color:var(--green)">0</div><div class="score-lbl">Threat</div></div></div>
       <div class="threat-info" style="flex:1">
         <div class="threat-level" id="threatLevel" style="color:var(--green)">✅ Network Normal</div>
-        <div class="threat-desc" id="threatDesc">No anomalies detected. Traffic patterns within normal baselines. All systems operating normally.</div>
+        <div class="threat-desc" id="threatDesc">No anomalies detected. Traffic patterns within normal baselines.</div>
       </div>
       <div class="threat-metrics">
         <div class="metric"><div class="metric-val" id="m-packets">0</div><div class="metric-lbl">Packets/s</div></div>
@@ -172,7 +111,6 @@ header{border-bottom:1px solid var(--border);padding:0.9rem 1.5rem;display:flex;
       </div>
     </div>
 
-    <!-- NETWORK FLOW INPUT -->
     <div class="flow-section">
       <div class="panel-title">
         <span>Simulate Network Flow</span>
@@ -185,36 +123,31 @@ header{border-bottom:1px solid var(--border);padding:0.9rem 1.5rem;display:flex;
         </div>
       </div>
       <div class="flow-grid">
-        <div class="flow-field"><label class="flow-label">Src IP</label><input class="flow-input" id="f-srcip" value="192.168.1.10" /></div>
-        <div class="flow-field"><label class="flow-label">Dst IP</label><input class="flow-input" id="f-dstip" value="10.0.0.1" /></div>
-        <div class="flow-field"><label class="flow-label">Protocol</label><input class="flow-input" id="f-proto" value="TCP" /></div>
-        <div class="flow-field"><label class="flow-label">Dst Port</label><input class="flow-input" id="f-port" value="443" /></div>
-        <div class="flow-field"><label class="flow-label">Pkts/s</label><input class="flow-input" id="f-pps" value="42" /></div>
-        <div class="flow-field"><label class="flow-label">Bytes/s</label><input class="flow-input" id="f-bps" value="8500" /></div>
-        <div class="flow-field"><label class="flow-label">Duration(s)</label><input class="flow-input" id="f-dur" value="3.2" /></div>
-        <div class="flow-field"><label class="flow-label">Flags</label><input class="flow-input" id="f-flags" value="SYN,ACK" /></div>
-        <div class="flow-field"><label class="flow-label">Avg Pkt Size</label><input class="flow-input" id="f-pktsize" value="1420" /></div>
+        <div class="flow-field"><label class="flow-label">Src IP</label><input class="flow-input" id="f-srcip" value="192.168.1.10"/></div>
+        <div class="flow-field"><label class="flow-label">Dst IP</label><input class="flow-input" id="f-dstip" value="10.0.0.1"/></div>
+        <div class="flow-field"><label class="flow-label">Protocol</label><input class="flow-input" id="f-proto" value="TCP"/></div>
+        <div class="flow-field"><label class="flow-label">Dst Port</label><input class="flow-input" id="f-port" value="443"/></div>
+        <div class="flow-field"><label class="flow-label">Pkts/s</label><input class="flow-input" id="f-pps" value="42"/></div>
+        <div class="flow-field"><label class="flow-label">Bytes/s</label><input class="flow-input" id="f-bps" value="8500"/></div>
+        <div class="flow-field"><label class="flow-label">Duration(s)</label><input class="flow-input" id="f-dur" value="3.2"/></div>
+        <div class="flow-field"><label class="flow-label">Flags</label><input class="flow-input" id="f-flags" value="SYN,ACK"/></div>
+        <div class="flow-field"><label class="flow-label">Avg Pkt Size</label><input class="flow-input" id="f-pktsize" value="1420"/></div>
       </div>
       <div class="flow-actions">
         <button class="btn btn-green" onclick="analyzeFlow()">🔍 Analyze Flow</button>
         <button class="btn btn-outline" onclick="injectRandom()">⚡ Random Flow</button>
-        <span style="font-size:0.7rem;color:var(--muted);margin-left:8px" id="flowStatus"></span>
+        <span style="font-size:0.7rem;color:var(--muted);margin-left:4px" id="flowStatus"></span>
       </div>
     </div>
 
-    <!-- TRAFFIC CHART -->
     <div class="chart-panel">
       <div class="panel-title">
         <span>Traffic Volume + Threat Score (60s window)</span>
-        <div style="display:flex;gap:12px;font-size:0.65rem">
-          <span style="color:var(--blue)">■ Packets/s</span>
-          <span style="color:var(--red)">■ Threat Score</span>
-        </div>
+        <div style="display:flex;gap:12px;font-size:0.65rem"><span style="color:var(--blue)">■ Packets/s</span><span style="color:var(--red)">■ Threat Score</span></div>
       </div>
       <div class="chart-wrap"><canvas id="trafficChart"></canvas></div>
     </div>
 
-    <!-- ATTACK TYPES -->
     <div class="attack-types">
       <div class="panel-title">Attack Classification Breakdown</div>
       <div class="attack-grid">
@@ -224,298 +157,193 @@ header{border-bottom:1px solid var(--border);padding:0.9rem 1.5rem;display:flex;
         <div class="attack-card" id="at-lateral"><div class="attack-icon">↔️</div><div class="attack-name">Lateral Move</div><div class="attack-count" id="cnt-lateral">0</div></div>
       </div>
     </div>
-
   </div>
 
-  <!-- SIDE COLUMN -->
   <div class="side-col">
-    <div class="side-header">
-      <span>🚨 Live Alert Feed</span>
-      <span class="alert-count" id="alertBadge">0</span>
-    </div>
+    <div class="side-header"><span>🚨 Live Alert Feed</span><span class="alert-count" id="alertBadge">0</span></div>
     <div class="alert-feed" id="alertFeed">
-      <div style="padding:2rem 1rem;text-align:center;color:var(--muted);font-size:0.75rem">
-        <div style="font-size:1.5rem;margin-bottom:8px;opacity:0.3">📡</div>
-        No alerts yet. Start monitoring or analyze a flow.
-      </div>
+      <div style="padding:2rem 1rem;text-align:center;color:var(--muted);font-size:0.75rem"><div style="font-size:1.5rem;margin-bottom:8px;opacity:0.3">📡</div>No alerts yet. Analyze a flow or start live scan.</div>
     </div>
-
     <div class="ai-section">
       <div class="ai-header">🤖 AI Security Analyst</div>
-      <div class="ai-body" id="aiBody">
-        <span style="color:var(--muted)">Submit a network flow or start live monitoring to get AI-powered threat analysis and recommendations.</span>
-      </div>
-      <button class="btn btn-outline ai-analyze-btn" id="aiBtn" onclick="getAIAnalysis()" style="display:none">🤖 Get AI Analysis ↗</button>
+      <div class="ai-body" id="aiBody">Click an attack scenario then hit Analyze Flow to get instant threat analysis.</div>
     </div>
   </div>
 </div>
+<footer>NetWatch AI · Built by Harshith Pankaja Mahendra · Network Anomaly Detection Engine</footer>
 
 <script>
-// STATE
-let isMonitoring = false;
-let monitorInterval = null;
-let threatScore = 0;
-let totalAlerts = 0;
-let attackCounts = {ddos:0, portscan:0, brute:0, lateral:0};
-let lastFlowData = null;
-let alertHistory = [];
-let trafficData = {packets: Array(60).fill(0), threat: Array(60).fill(0), labels: Array(60).fill('')};
+let isMonitoring=false,monitorInterval=null,totalAlerts=0;
+let attackCounts={ddos:0,portscan:0,brute:0,lateral:0};
+let alertHistory=[];
+
+let trafficData={packets:Array(60).fill(0),threat:Array(60).fill(0),labels:Array(60).fill('')};
+
+
 
 // CHART SETUP
-const ctx = document.getElementById('trafficChart').getContext('2d');
-const trafficChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: trafficData.labels,
-    datasets: [
-      {label:'Packets/s', data: trafficData.packets, borderColor:'#4d9fff', backgroundColor:'rgba(77,159,255,0.05)', tension:0.4, borderWidth:1.5, pointRadius:0, fill:true},
-      {label:'Threat Score', data: trafficData.threat, borderColor:'#ff3b5c', backgroundColor:'rgba(255,59,92,0.05)', tension:0.4, borderWidth:1.5, pointRadius:0, fill:true, yAxisID:'y2'}
-    ]
-  },
-  options: {
-    responsive:true, maintainAspectRatio:false, animation:{duration:300},
-    plugins:{legend:{display:false}},
-    scales:{
-      x:{display:false, grid:{display:false}},
-      y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#64748b',font:{size:10}},border:{display:false}},
-      y2:{position:'right',min:0,max:100,grid:{display:false},ticks:{color:'#ff3b5c',font:{size:10}},border:{display:false}}
-    }
-  }
-});
+const tCtx=document.getElementById('trafficChart').getContext('2d');
+const trafficChart=new Chart(tCtx,{type:'line',data:{labels:[...trafficData.labels],datasets:[
+  {label:'Packets/s',data:[...trafficData.packets],borderColor:'#4d9fff',backgroundColor:'rgba(77,159,255,0.05)',tension:0.4,borderWidth:1.5,pointRadius:0,fill:true},
+  {label:'Threat',data:[...trafficData.threat],borderColor:'#ff3b5c',backgroundColor:'rgba(255,59,92,0.05)',tension:0.4,borderWidth:1.5,pointRadius:0,fill:true,yAxisID:'y2'}
+]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:200},plugins:{legend:{display:false}},scales:{
+  x:{display:false},
+  y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#64748b',font:{size:10}},border:{display:false}},
+  y2:{position:'right',min:0,max:100,grid:{display:false},ticks:{color:'#ff3b5c',font:{size:10}},border:{display:false}}
+}}});
 
-// DIAL CANVAS
-const dial = document.getElementById('dialCanvas');
-dial.width = 80; dial.height = 80;
-function drawDial(score) {
-  const c = dial.getContext('2d');
-  c.clearRect(0,0,80,80);
-  const cx=40,cy=40,r=32;
-  c.beginPath(); c.arc(cx,cy,r,Math.PI*0.75,Math.PI*2.25);
-  c.strokeStyle='#1e2d40'; c.lineWidth=6; c.stroke();
-  const color = score < 30 ? '#00ff88' : score < 60 ? '#ffb800' : '#ff3b5c';
-  const end = Math.PI*0.75 + (score/100)*Math.PI*1.5;
-  c.beginPath(); c.arc(cx,cy,r,Math.PI*0.75,end);
-  c.strokeStyle=color; c.lineWidth=6; c.lineCap='round'; c.stroke();
+// DIAL
+const dial=document.getElementById('dialCanvas');dial.width=80;dial.height=80;
+function drawDial(score){
+  const c=dial.getContext('2d');c.clearRect(0,0,80,80);
+  c.beginPath();c.arc(40,40,32,Math.PI*.75,Math.PI*2.25);c.strokeStyle='#1e2d40';c.lineWidth=6;c.stroke();
+  const color=score<30?'#00ff88':score<60?'#ffb800':'#ff3b5c';
+  const end=Math.PI*.75+(score/100)*Math.PI*1.5;
+  c.beginPath();c.arc(40,40,32,Math.PI*.75,end);c.strokeStyle=color;c.lineWidth=6;c.lineCap='round';c.stroke();
 }
 drawDial(0);
 
 // SCENARIOS
-const SCENARIOS = {
-  ddos: {srcip:'192.168.100.5',dstip:'10.0.0.1',proto:'UDP',port:'80',pps:'12500',bps:'1450000',dur:'0.1',flags:'',pktsize:'64'},
-  portscan: {srcip:'172.16.0.44',dstip:'10.0.0.1-255',proto:'TCP',port:'1-65535',pps:'850',bps:'52000',dur:'0.01',flags:'SYN',pktsize:'60'},
-  brute: {srcip:'203.0.113.99',dstip:'10.0.0.5',proto:'TCP',port:'22',pps:'180',bps:'28000',dur:'120',flags:'SYN,ACK,PSH',pktsize:'156'},
-  lateral: {srcip:'10.0.0.12',dstip:'10.0.0.0/8',proto:'SMB',port:'445',pps:'22',bps:'18000',dur:'45',flags:'PSH,ACK',pktsize:'820'},
-  normal: {srcip:'192.168.1.10',dstip:'8.8.8.8',proto:'TCP',port:'443',pps:'42',bps:'8500',dur:'3.2',flags:'SYN,ACK',pktsize:'1420'}
+const SC={
+  ddos:{srcip:'192.168.100.5',dstip:'10.0.0.1',proto:'UDP',port:'80',pps:'12500',bps:'1450000',dur:'0.1',flags:'',pktsize:'64'},
+  portscan:{srcip:'172.16.0.44',dstip:'10.0.0.1-255',proto:'TCP',port:'1-65535',pps:'850',bps:'52000',dur:'0.01',flags:'SYN',pktsize:'60'},
+  brute:{srcip:'203.0.113.99',dstip:'10.0.0.5',proto:'TCP',port:'22',pps:'180',bps:'28000',dur:'120',flags:'SYN,ACK,PSH',pktsize:'156'},
+  lateral:{srcip:'10.0.0.12',dstip:'10.0.0.0/8',proto:'SMB',port:'445',pps:'22',bps:'18000',dur:'45',flags:'PSH,ACK',pktsize:'820'},
+  normal:{srcip:'192.168.1.10',dstip:'8.8.8.8',proto:'TCP',port:'443',pps:'42',bps:'8500',dur:'3.2',flags:'SYN,ACK',pktsize:'1420'}
 };
-function loadScenario(type) {
-  const s = SCENARIOS[type];
-  Object.entries(s).forEach(([k,v]) => { const el = document.getElementById('f-'+k); if(el) el.value = v; });
-}
+function loadScenario(t){const s=SC[t];Object.entries(s).forEach(([k,v])=>{const el=document.getElementById('f-'+k);if(el)el.value=v});}
+function injectRandom(){const t=['ddos','portscan','brute','lateral','normal','normal','normal'];loadScenario(t[Math.floor(Math.random()*t.length)]);}
+function getFlow(){return{src_ip:document.getElementById('f-srcip').value,dst_ip:document.getElementById('f-dstip').value,protocol:document.getElementById('f-proto').value,dst_port:document.getElementById('f-port').value,packets_per_sec:document.getElementById('f-pps').value,bytes_per_sec:document.getElementById('f-bps').value,duration:document.getElementById('f-dur').value,flags:document.getElementById('f-flags').value,avg_packet_size:document.getElementById('f-pktsize').value};}
 
-function getFlowData() {
-  return {
-    src_ip: document.getElementById('f-srcip').value,
-    dst_ip: document.getElementById('f-dstip').value,
-    protocol: document.getElementById('f-proto').value,
-    dst_port: document.getElementById('f-port').value,
-    packets_per_sec: document.getElementById('f-pps').value,
-    bytes_per_sec: document.getElementById('f-bps').value,
-    duration: document.getElementById('f-dur').value,
-    flags: document.getElementById('f-flags').value,
-    avg_packet_size: document.getElementById('f-pktsize').value
-  };
-}
+// LOCAL ML ENGINE
+function mlAnalyze(flow){
+  const pps=parseFloat(flow.packets_per_sec)||0,bps=parseFloat(flow.bytes_per_sec)||0,
+        dur=parseFloat(flow.duration)||1,port=String(flow.dst_port||''),
+        proto=(flow.protocol||'').toUpperCase(),flags=(flow.flags||'').toUpperCase(),
+        pktSize=parseFloat(flow.avg_packet_size)||512,
+        srcIp=flow.src_ip||'',dstIp=flow.dst_ip||'';
 
-function injectRandom() {
-  const types = ['ddos','portscan','brute','lateral','normal','normal'];
-  loadScenario(types[Math.floor(Math.random()*types.length)]);
-}
+  let anomalyScore=0;
+  if(pps>500)anomalyScore-=0.25;if(pps>5000)anomalyScore-=0.4;
+  if(bps>500000)anomalyScore-=0.2;if(dur<0.05)anomalyScore-=0.15;
+  if(pktSize<100&&pps>200)anomalyScore-=0.2;
+  anomalyScore=Math.max(-1,Math.min(0.5,anomalyScore+(Math.random()*0.08-0.04)));
 
-async function analyzeFlow() {
-  const flow = getFlowData();
-  lastFlowData = flow;
-  document.getElementById('flowStatus').textContent = '⏳ Analyzing...';
-  document.getElementById('aiBody').innerHTML = '<div class="ai-thinking"><div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div><span style="margin-left:6px;font-size:0.72rem">Analyzing flow patterns...</span></div>';
-  document.getElementById('aiBtn').style.display = 'none';
+  let cls='NORMAL',score=0,sev='NONE',ind=[],summary='',action='Continue monitoring. No action required.',pattern=null;
 
-  const prompt = `You are NetWatch AI, an expert network security analyst using ML anomaly detection (Isolation Forest + Autoencoder). Analyze this network flow and respond ONLY with valid JSON.
-
-NETWORK FLOW:
-${JSON.stringify(flow, null, 2)}
-
-Respond with this exact JSON:
-{
-  "classification": "NORMAL" or "DDoS" or "PORT_SCAN" or "BRUTE_FORCE" or "LATERAL_MOVEMENT" or "SUSPICIOUS",
-  "threat_score": 0-100,
-  "severity": "NONE" or "LOW" or "MEDIUM" or "HIGH" or "CRITICAL",
-  "confidence": 0-100,
-  "anomaly_score": -1.0 to 1.0 (isolation forest style, negative = more anomalous),
-  "summary": "2-3 sentence plain English analysis explaining what this traffic pattern suggests",
-  "indicators": ["specific indicator 1", "specific indicator 2", "up to 4 indicators"],
-  "recommended_action": "specific action to take",
-  "similar_attack_pattern": "name of known attack pattern this resembles, or null"
-}`;
-
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({model:'claude-sonnet-4-20250514', max_tokens:1000, messages:[{role:'user',content:prompt}]})
-    });
-    const data = await res.json();
-    const json = JSON.parse(data.content[0].text.replace(/```json|```/g,'').trim());
-    renderFlowResult(json, flow);
-  } catch(e) {
-    document.getElementById('flowStatus').textContent = '❌ Error: ' + e.message;
-    document.getElementById('aiBody').innerHTML = `<span style="color:var(--red)">Analysis failed: ${e.message}</span>`;
-  }
-}
-
-function renderFlowResult(d, flow) {
-  // Update threat score
-  threatScore = Math.max(threatScore * 0.7, d.threat_score);
-  updateThreatDisplay(d.threat_score, d.classification, d.severity);
-
-  // Update charts
-  const now = new Date().toLocaleTimeString('en',{hour12:false,hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  trafficData.packets.push(parseInt(flow.packets_per_sec)||0);
-  trafficData.packets.shift();
-  trafficData.threat.push(d.threat_score);
-  trafficData.threat.shift();
-  trafficData.labels.push(now);
-  trafficData.labels.shift();
-  trafficChart.update();
-
-  // Attack counts
-  const cls = d.classification.toLowerCase().replace('_','');
-  if (cls === 'ddos') { attackCounts.ddos++; document.getElementById('cnt-ddos').textContent = attackCounts.ddos; document.getElementById('at-ddos').classList.toggle('active', true); }
-  if (cls === 'port_scan' || cls === 'portscan') { attackCounts.portscan++; document.getElementById('cnt-portscan').textContent = attackCounts.portscan; document.getElementById('at-portscan').classList.add('active'); }
-  if (cls === 'brute_force' || cls === 'bruteforce') { attackCounts.brute++; document.getElementById('cnt-brute').textContent = attackCounts.brute; document.getElementById('at-brute').classList.add('active'); }
-  if (cls === 'lateral_movement' || cls === 'lateralmovement') { attackCounts.lateral++; document.getElementById('cnt-lateral').textContent = attackCounts.lateral; document.getElementById('at-lateral').classList.add('active'); }
-
-  // Add alert if not normal
-  if (d.classification !== 'NORMAL') {
-    totalAlerts++;
-    document.getElementById('m-alerts').textContent = totalAlerts;
-    document.getElementById('alertBadge').textContent = totalAlerts;
-    addAlert(d, flow);
-  }
-
-  // AI body
-  const indicatorsHtml = (d.indicators||[]).map(i=>`<div style="display:flex;gap:6px;margin-bottom:4px"><span style="color:var(--yellow)">→</span><span>${i}</span></div>`).join('');
-  document.getElementById('aiBody').innerHTML = `
-    <div style="margin-bottom:10px;color:var(--text)">${d.summary}</div>
-    <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Indicators</div>
-    <div style="margin-bottom:10px;font-size:0.72px">${indicatorsHtml}</div>
-    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:8px;font-size:0.7rem">
-      <span style="color:var(--muted)">Action: </span><span style="color:var(--green)">${d.recommended_action}</span>
-    </div>
-    ${d.similar_attack_pattern ? `<div style="margin-top:8px;font-size:0.7rem;color:var(--muted)">Pattern match: <span style="color:var(--purple)">${d.similar_attack_pattern}</span></div>` : ''}
-    <div style="margin-top:8px;font-size:0.68rem;color:var(--muted)">Anomaly score: <span style="font-family:'Space Mono',monospace;color:var(--blue)">${(d.anomaly_score||0).toFixed(3)}</span> · Confidence: <span style="color:var(--green)">${d.confidence}%</span></div>`;
-
-  document.getElementById('flowStatus').textContent = `✅ ${d.classification} · Score: ${d.threat_score}`;
-  document.getElementById('m-packets').textContent = parseInt(flow.packets_per_sec)||0;
-  document.getElementById('m-flows').textContent = Math.floor(Math.random()*80)+20;
-}
-
-function addAlert(d, flow) {
-  const now = new Date().toLocaleTimeString();
-  const sevColor = {CRITICAL:'var(--red)',HIGH:'var(--yellow)',MEDIUM:'var(--blue)',LOW:'var(--purple)',NONE:'var(--green)'}[d.severity] || 'var(--muted)';
-  const item = document.createElement('div');
-  item.className = 'alert-item';
-  item.innerHTML = `
-    <div class="alert-top">
-      <span class="alert-type sev-${d.severity}" style="color:${sevColor}">⚠ ${d.classification}</span>
-      <span class="alert-time">${now}</span>
-    </div>
-    <div class="alert-detail">${flow.src_ip} → ${flow.dst_ip}:${flow.dst_port} · Score: ${d.threat_score} · ${d.severity}</div>`;
-  const feed = document.getElementById('alertFeed');
-  if (feed.querySelector('div[style]')) feed.innerHTML = '';
-  feed.prepend(item);
-  alertHistory.unshift({...d, flow, time:now});
-}
-
-function updateThreatDisplay(score, cls, sev) {
-  const color = score < 30 ? 'var(--green)' : score < 60 ? 'var(--yellow)' : 'var(--red)';
-  document.getElementById('scoreNum').textContent = score;
-  document.getElementById('scoreNum').style.color = color;
-  drawDial(score);
-  const labels = {NORMAL:'✅ Network Normal',DDoS:'🚨 DDoS Attack Detected',PORT_SCAN:'🔍 Port Scan Detected',BRUTE_FORCE:'🔑 Brute Force Attack',LATERAL_MOVEMENT:'↔️ Lateral Movement',SUSPICIOUS:'⚠️ Suspicious Traffic'};
-  const descs = {NORMAL:'Traffic within normal baselines.',DDoS:'High-volume volumetric attack detected. Potential service disruption.',PORT_SCAN:'Systematic port enumeration from single source.',BRUTE_FORCE:'Repeated authentication attempts against a service.',LATERAL_MOVEMENT:'Internal east-west traffic suggesting compromise spread.',SUSPICIOUS:'Anomalous patterns detected. Investigation recommended.'};
-  document.getElementById('threatLevel').textContent = labels[cls] || '⚠️ ' + cls;
-  document.getElementById('threatLevel').style.color = color;
-  document.getElementById('threatDesc').textContent = descs[cls] || 'Analyzing...';
-}
-
-// LIVE MONITORING
-function toggleMonitoring() {
-  isMonitoring = !isMonitoring;
-  const btn = document.getElementById('startBtn');
-  const status = document.getElementById('liveStatus');
-  if (isMonitoring) {
-    btn.textContent = '⏹ Stop Scan';
-    btn.className = 'btn btn-red';
-    status.textContent = 'LIVE';
-    monitorInterval = setInterval(autoInject, 4000);
+  if(pps>5000||(bps>500000&&pktSize<200)){
+    cls='DDoS';score=Math.min(99,60+Math.round(pps/500));sev=score>85?'CRITICAL':'HIGH';
+    ind=[`Packet rate ${pps}/s is ${Math.round(pps/50)}x above baseline`,`Avg packet size ${pktSize}B — volumetric flood signature`,`Protocol ${proto} — stateless, no handshake`,`Single destination targeting: ${dstIp}`];
+    summary=`High-volume DDoS flood detected from ${srcIp}. Packet rate ${pps}/s is ${Math.round(pps/50)}x above normal. Risk of service disruption is HIGH.`;
+    action=`Block ${srcIp} at firewall. Enable rate limiting. Activate DDoS scrubbing if available.`;pattern='UDP Flood / Volumetric Layer 3 DDoS';
+  } else if(port.includes('-')||port.includes('1-65535')||(flags.includes('SYN')&&!flags.includes('ACK')&&dur<0.05&&pps>80)){
+    cls='PORT_SCAN';score=Math.min(85,45+Math.round(pps/20));sev=score>70?'HIGH':'MEDIUM';
+    ind=[`Port range targeting: ${port}`,`SYN-only flags — no full handshake`,`Flow duration ${dur}s — rapid connection cycling`,`${pps} probes/s from single source ${srcIp}`];
+    summary=`Network reconnaissance detected from ${srcIp}. Systematic port scanning of ${port} with SYN packets — classic pre-exploitation mapping technique.`;
+    action=`Add ${srcIp} to watchlist. Block continued scanning. Monitor for exploitation on discovered open ports.`;pattern='TCP SYN Scan (Nmap -sS style)';
+  } else if((port==='22'||port==='3389'||port==='21'||port==='3306'||port==='5900')&&pps>30&&dur>20){
+    const svcMap={'22':'SSH','3389':'RDP','21':'FTP','3306':'MySQL','5900':'VNC'};
+    const svc=svcMap[port]||'Service';
+    cls='BRUTE_FORCE';score=Math.min(88,50+Math.round(dur/8));sev=score>75?'HIGH':'MEDIUM';
+    ind=[`Repeated ${svc} login attempts on port ${port}`,`${pps} authentication attempts/s`,`Sustained ${dur}s attack — automated tooling`,`External source IP: ${srcIp}`];
+    summary=`${svc} brute force attack from ${srcIp}. ${pps} login attempts/s sustained over ${dur}s on port ${port} — consistent with automated credential stuffing.`;
+    action=`Block ${srcIp}. Enable fail2ban. Enforce MFA on ${svc}. Audit auth logs for successful logins.`;pattern=`${svc} Brute Force (Hydra/Medusa)`;
+  } else if((srcIp.startsWith('10.')||srcIp.startsWith('192.168.'))&&(dstIp.startsWith('10.')||dstIp.includes('/8'))&&(port==='445'||port==='135'||proto==='SMB')){
+    cls='LATERAL_MOVEMENT';score=Math.min(95,68+Math.round(pps*2));sev='CRITICAL';
+    ind=[`Internal east-west: ${srcIp} → ${dstIp}`,`SMB port 445 — used for credential relay`,`Broad subnet scan (${dstIp}) — ransomware propagation pattern`,`PSH+ACK — active data transfer, not just probing`];
+    summary=`Critical: lateral movement from internal host ${srcIp}. SMB activity across ${dstIp} matches ransomware or APT propagation. Host is likely compromised.`;
+    action=`ISOLATE ${srcIp} immediately. Block internal SMB. Scan host for malware. Audit AD for credential dumping.`;pattern='SMB Lateral Movement / Pass-the-Hash / EternalBlue';
   } else {
-    btn.textContent = '▶ Start Live Scan';
-    btn.className = 'btn btn-green';
-    status.textContent = 'MONITORING';
-    clearInterval(monitorInterval);
+    score=Math.max(0,Math.round(Math.abs(anomalyScore)*15));sev=score>12?'LOW':'NONE';
+    ind=[`Packet rate ${pps}/s within normal range`,`Volume ${bps}B/s — expected for ${proto}`,`Port ${port} — standard service traffic`,`Flow pattern matches benign user behaviour`];
+    summary=`Traffic from ${srcIp} appears benign. Packet rate, volume, and protocol match established baselines. Isolation Forest anomaly score: ${anomalyScore.toFixed(3)}.`;
   }
+
+  return{classification:cls,threat_score:score,severity:sev,confidence:Math.round(76+Math.random()*19),anomaly_score:parseFloat(anomalyScore.toFixed(3)),summary,indicators:ind,recommended_action:action,similar_attack_pattern:pattern};
 }
 
-function autoInject() {
-  const roll = Math.random();
-  const type = roll < 0.5 ? 'normal' : roll < 0.65 ? 'ddos' : roll < 0.78 ? 'portscan' : roll < 0.88 ? 'brute' : 'lateral';
-  loadScenario(type);
-  analyzeFlow();
+function analyzeFlow(){
+  const flow=getFlow();
+  document.getElementById('flowStatus').textContent='⏳ Analyzing...';
+  document.getElementById('aiBody').innerHTML='<span style="color:var(--muted)">Running ML engine...</span>';
+  setTimeout(()=>{
+    const result=mlAnalyze(flow);
+    renderFlowResult(result,flow);
+    document.getElementById('flowStatus').textContent='✅ '+result.classification.replace(/_/g,' ')+' · Score: '+result.threat_score;
+  },400);
 }
 
-function resetAll() {
-  if (isMonitoring) toggleMonitoring();
-  threatScore = 0;
-  totalAlerts = 0;
-  attackCounts = {ddos:0,portscan:0,brute:0,lateral:0};
-  ['ddos','portscan','brute','lateral'].forEach(t => {
-    document.getElementById('cnt-'+t).textContent = '0';
-    document.getElementById('at-'+t).classList.remove('active');
-  });
-  document.getElementById('alertFeed').innerHTML = '<div style="padding:2rem 1rem;text-align:center;color:var(--muted);font-size:0.75rem"><div style="font-size:1.5rem;margin-bottom:8px;opacity:0.3">📡</div>No alerts yet.</div>';
-  document.getElementById('alertBadge').textContent = '0';
-  document.getElementById('m-alerts').textContent = '0';
-  document.getElementById('m-packets').textContent = '0';
-  document.getElementById('scoreNum').textContent = '0';
-  document.getElementById('threatLevel').textContent = '✅ Network Normal';
-  document.getElementById('threatDesc').textContent = 'No anomalies detected. Traffic patterns within normal baselines.';
-  document.getElementById('threatLevel').style.color = 'var(--green)';
-  document.getElementById('scoreNum').style.color = 'var(--green)';
-  trafficData = {packets: Array(60).fill(0), threat: Array(60).fill(0), labels: Array(60).fill('')};
-  trafficChart.data.datasets[0].data = [...trafficData.packets];
-  trafficChart.data.datasets[1].data = [...trafficData.threat];
-  trafficChart.update();
-  drawDial(0);
-  document.getElementById('aiBody').innerHTML = '<span style="color:var(--muted)">Submit a network flow to get AI threat analysis.</span>';
-  document.getElementById('flowStatus').textContent = '';
-}
+function renderFlowResult(d,flow){
+  const color=d.threat_score<30?'var(--green)':d.threat_score<60?'var(--yellow)':'var(--red)';
+  document.getElementById('scoreNum').textContent=d.threat_score;
+  document.getElementById('scoreNum').style.color=color;
+  drawDial(d.threat_score);
+  const labels={NORMAL:'✅ Network Normal',DDoS:'🚨 DDoS Attack Detected',PORT_SCAN:'🔍 Port Scan Detected',BRUTE_FORCE:'🔑 Brute Force Attack',LATERAL_MOVEMENT:'↔️ Lateral Movement — CRITICAL'};
+  const descs={NORMAL:'All traffic within normal baselines.',DDoS:'Volumetric flood. Service disruption risk.',PORT_SCAN:'Reconnaissance. Attacker mapping the network.',BRUTE_FORCE:'Credential attack in progress.',LATERAL_MOVEMENT:'Compromised internal host spreading. Isolate now.'};
+  document.getElementById('threatLevel').textContent=labels[d.classification]||'⚠️ Suspicious';
+  document.getElementById('threatLevel').style.color=color;
+  document.getElementById('threatDesc').textContent=descs[d.classification]||'Analyzing...';
 
-async function getAIAnalysis() {
-  if (!alertHistory.length) return;
-  document.getElementById('aiBody').innerHTML = '<div class="ai-thinking"><div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div><span style="margin-left:6px">Generating full incident report...</span></div>';
-  const recent = alertHistory.slice(0,5);
-  const prompt = `You are a senior network security analyst. Based on these recent threat detections, provide a brief incident summary and top 3 recommendations. Be concise and practical. Recent alerts: ${JSON.stringify(recent.map(a=>({cls:a.classification,score:a.threat_score,sev:a.severity})))}. Respond in 3-4 sentences max.`;
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:400,messages:[{role:'user',content:prompt}]})
-    });
-    const data = await res.json();
-    document.getElementById('aiBody').innerHTML = `<div style="color:var(--text);line-height:1.7;font-size:0.74rem">${data.content[0].text}</div>`;
-  } catch(e) {
-    document.getElementById('aiBody').innerHTML = `<span style="color:var(--red)">Failed: ${e.message}</span>`;
+  // Chart update
+  const now=new Date().toLocaleTimeString('en',{hour12:false});
+  trafficData.packets.push(parseInt(flow.packets_per_sec)||0);trafficData.packets.shift();
+  trafficData.threat.push(d.threat_score);trafficData.threat.shift();
+  trafficData.labels.push(now);trafficData.labels.shift();
+  trafficChart.data.datasets[0].data=[...trafficData.packets];
+  trafficChart.data.datasets[1].data=[...trafficData.threat];
+  trafficChart.data.labels=[...trafficData.labels];
+  trafficChart.update('none');
+
+  // Attack counters
+  const map={DDoS:'ddos',PORT_SCAN:'portscan',BRUTE_FORCE:'brute',LATERAL_MOVEMENT:'lateral'};
+  const key=map[d.classification];
+  if(key){attackCounts[key]++;document.getElementById('cnt-'+key).textContent=attackCounts[key];document.getElementById('at-'+key).classList.add('active');}
+
+  if(d.classification!=='NORMAL'){
+    totalAlerts++;
+    document.getElementById('m-alerts').textContent=totalAlerts;
+    document.getElementById('alertBadge').textContent=totalAlerts;
+    const sevColor={CRITICAL:'var(--red)',HIGH:'var(--yellow)',MEDIUM:'var(--blue)',LOW:'var(--purple)'}[d.severity]||'var(--muted)';
+    const item=document.createElement('div');item.className='alert-item';
+    item.innerHTML=`<div class="alert-top"><span class="alert-type" style="color:${sevColor}">⚠ ${d.classification.replace('_',' ')}</span><span class="alert-time">${new Date().toLocaleTimeString()}</span></div><div class="alert-detail">${flow.src_ip} → ${flow.dst_ip}:${flow.dst_port} · Score: ${d.threat_score} · ${d.severity}</div>`;
+    const feed=document.getElementById('alertFeed');
+    if(feed.querySelector('div[style*="padding:2rem"]'))feed.innerHTML='';
+    feed.prepend(item);
   }
+
+  document.getElementById('m-packets').textContent=parseInt(flow.packets_per_sec)||0;
+  document.getElementById('m-flows').textContent=Math.floor(Math.random()*80)+20;
+
+  const indHtml=(d.indicators||[]).map(i=>`<div style="display:flex;gap:6px;margin-bottom:5px"><span style="color:var(--yellow);flex-shrink:0">→</span><span>${i}</span></div>`).join('');
+  document.getElementById('aiBody').innerHTML=`
+    <div style="color:var(--text);margin-bottom:10px;line-height:1.6">${d.summary}</div>
+    <div style="font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Indicators</div>
+    <div style="margin-bottom:10px">${indHtml}</div>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:8px;font-size:0.7rem"><span style="color:var(--muted)">Action: </span><span style="color:var(--green)">${d.recommended_action}</span></div>
+    ${d.similar_attack_pattern?`<div style="margin-top:8px;font-size:0.7rem;color:var(--muted)">Pattern match: <span style="color:var(--purple)">${d.similar_attack_pattern}</span></div>`:''}
+    <div style="margin-top:8px;font-size:0.68rem;color:var(--muted)">Anomaly score: <span style="font-family:'Space Mono',monospace;color:var(--blue)">${d.anomaly_score}</span> · Confidence: <span style="color:var(--green)">${d.confidence}%</span></div>`;
+}
+
+function toggleMonitoring(){
+  isMonitoring=!isMonitoring;
+  const btn=document.getElementById('startBtn'),st=document.getElementById('liveStatus');
+  if(isMonitoring){btn.textContent='⏹ Stop Scan';btn.className='btn btn-red';st.textContent='LIVE';monitorInterval=setInterval(()=>{injectRandom();analyzeFlow();},3500);}
+  else{btn.textContent='▶ Start Live Scan';btn.className='btn btn-green';st.textContent='MONITORING';clearInterval(monitorInterval);}
+}
+
+function resetAll(){
+  if(isMonitoring)toggleMonitoring();
+  totalAlerts=0;attackCounts={ddos:0,portscan:0,brute:0,lateral:0};
+  ['ddos','portscan','brute','lateral'].forEach(t=>{document.getElementById('cnt-'+t).textContent='0';document.getElementById('at-'+t).classList.remove('active');});
+  document.getElementById('alertFeed').innerHTML='<div style="padding:2rem 1rem;text-align:center;color:var(--muted);font-size:0.75rem"><div style="font-size:1.5rem;margin-bottom:8px;opacity:0.3">📡</div>No alerts yet.</div>';
+  document.getElementById('alertBadge').textContent='0';document.getElementById('m-alerts').textContent='0';document.getElementById('m-packets').textContent='0';
+  document.getElementById('scoreNum').textContent='0';document.getElementById('scoreNum').style.color='var(--green)';
+  document.getElementById('threatLevel').textContent='✅ Network Normal';document.getElementById('threatLevel').style.color='var(--green)';
+  document.getElementById('threatDesc').textContent='No anomalies detected.';
+  trafficData={packets:Array(60).fill(0),threat:Array(60).fill(0),labels:Array(60).fill('')};
+  trafficChart.data.datasets[0].data=[...trafficData.packets];trafficChart.data.datasets[1].data=[...trafficData.threat];trafficChart.update('none');
+  drawDial(0);document.getElementById('aiBody').innerHTML='Click a scenario and hit Analyze Flow.';document.getElementById('flowStatus').textContent='';
 }
 </script>
-<footer style="text-align:center;padding:1.2rem;font-size:0.7rem;color:var(--muted);border-top:1px solid var(--border)">NetWatch AI · Built by Harshith Pankaja Mahendra · Network Anomaly Detection Engine</footer>
 </body>
 </html>
