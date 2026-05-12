@@ -85,7 +85,7 @@ AI Analyst → Plain-English Summary + Recommended Action
 
 ```
 netwatch-ai/
-├── index.html       # Full app — dashboard + AI engine in one file
+├── NetWatchAI.html       # Full app — dashboard + AI engine in one file
 └── README.md
 ```
 
@@ -93,12 +93,12 @@ netwatch-ai/
 
 ## ⚙️ Run Locally
 
-No install needed. Just open `index.html` in your browser.
+No install needed. Just open `NetWatchAI.html` in your browser.
 
 ```bash
 git clone https://github.com/yourusername/netwatch-ai
 cd netwatch-ai
-open index.html
+open NetWatchAI.html
 ```
 
 ---
